@@ -1,0 +1,15 @@
+Current bugs in the installer
+
+* it can not download the SVN binaries from the internet because the files seem to redirect in an infinite loop
+http://downloads.sourceforge.net/project/win32svn/1.6.17/Setup-Subversion-1.6.17.msi?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fwin32svn%2F&ts=1318522620&use_mirror=cdnetworks-us-2
+
+* Choosing SVN versions and alias files needs to be interactive or have an easier way to edit which one you want (maybe command line switches or a conf file)
+
+* installer does not stop/restart wampserver services
+C:\wamp\wampmanager.exe -restart
+
+* no error handling in case files/directories exist
+
+* windows requires reboot to get server to detect modules see if this can be avoided.
+
+* uninstaller has not been tested in a long while
