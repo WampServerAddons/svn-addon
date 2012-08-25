@@ -49,7 +49,7 @@ if not %ERRORLEVEL%==0 (echo FAIL: could not extract downloaded files& pause& ex
 REM install the binary files in the WampServer install directory
 echo 	Moving the files to the WampServer install directory...
 mkdir %WAMP_SVN%
-move %TMP%\%SVN_FILE% %WAMP_SVN%\%SVN_DIR% > NUL 2>&1
+xcopy /E /I /Q  %TMP%\%SVN_FILE% %WAMP_SVN%\%SVN_DIR% > NUL 2>&1
 if not %ERRORLEVEL%==0 (echo FAIL: could not move the files& pause& exit 1)
 
 REM install the Subversion modules for Apache
@@ -97,14 +97,12 @@ if not %ERRORLEVEL%==0 (echo WARNING: could not download Python bindings. Skippi
 
 REM unzip the downloaded source files and install them
 echo 	Extracting the files from the downloaded archive...
-unzip.exe -q %TMP%\%PYBINDINGS_FILE%.zip -d %TMP%
+unzip.exe -q -o %TMP%\%PYBINDINGS_FILE%.zip -d %TMP%
 if not %ERRORLEVEL%==0 (echo WARNING: could not extract Python bindings. Skipping...& GOTO PYTHON_END)
 
 REM install the binary files in the WampServer install directory
 echo 	Moving the files to the WampServer install directory...
-move %TMP%\%SVN_FILE%\python\libsvn %PYTHON_LIB% > NUL 2>&1
-if not %ERRORLEVEL%==0 (echo WARNING: could not install Python bindings. Skipping...& GOTO PYTHON_END)
-move %TMP%\%SVN_FILE%\python\svn %PYTHON_LIB%> NUL 2>&1
+xcopy /E /I /Q %TMP%\%SVN_FILE%\python %PYTHON_LIB% > NUL 2>&1
 if not %ERRORLEVEL%==0 (echo WARNING: could not install Python bindings. Skipping...& GOTO PYTHON_END)
 
 REM TODO: precompile bindings
