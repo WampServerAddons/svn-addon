@@ -2,12 +2,8 @@ Current bugs in the installer
 
 * Choosing SVN versions and alias files needs to be interactive or have an easier way to edit which one you want (maybe command line switches or a conf file)
 
-* installer does not stop/restart wampserver services
+* installer does not stop/restart wampserver services. services will not get an updated PATH until reboot.
 C:\wamp\wampmanager.exe -restart
-
-* no error handling in case files/directories exist
-
-* windows requires reboot to get server to detect modules see if this can be avoided.
 
 * uninstaller has not been tested in a long while
 
@@ -15,3 +11,6 @@ C:\wamp\wampmanager.exe -restart
 
 * possibly have a way to install multiple svn.conf files and swap between them from the wampserver
 menu similar to the "put online" option.
+
+* getting an occassional access denied error when moving files around. Dropbox may be the problem. addon folder was first
+copied from dropbox folder to desktop and then the install script was run from the desktop copy.

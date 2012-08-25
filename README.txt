@@ -9,6 +9,11 @@ Where to download Subversion:
  The binaries we currently use for the installer are from the Subversion for Windows project on
  sourceforge.net - http://sourceforge.net/projects/win32svn/
 
+Required Addons:
+
+Optionally Required:
+ * Python (for language bindings)
+
 Manual install instructions:
  (assumes wamp is already installed and working)
 
