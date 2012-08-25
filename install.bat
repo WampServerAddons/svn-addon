@@ -1,6 +1,6 @@
 @echo OFF
 REM TODO use the call command to set some variables common to both the installer/uninstaller
-set SVN_VERSION=1.6.6
+set SVN_VERSION=1.7.0
 set APACHE_VERSION=2.2.21
 
 set BIN=installer\bin
@@ -14,8 +14,7 @@ set SVN_FILE=svn-win32-%SVN_VERSION%
 set SVN_DIR=svn%SVN_VERSION%
 set SVN_BIN=%WAMP_SVN%\%SVN_DIR%\bin
 
-REM ideally this will be automatically set based on %SVN_VERSION%
-set DOWNLOAD=http://subversion.tigris.org/files/documents/15/47743/svn-win32-1.5.6.zip
+set DOWNLOAD=http://downloads.sourceforge.net/project/win32svn/%SVN_VERSION%/%SVN_FILE%.zip
 
 REM choose one of following apache config files for svn
 set SVN_ALIAS=svn-anonymous-ro-access.conf
@@ -23,22 +22,20 @@ REM set SVN_ALIAS=svn-anonymous-rw-access.conf
 
 set PATH=%PATH%;%BIN%
 
-echo Welcome to the SVN Addon installer for WampServer 2.0i
+echo Welcome to the SVN Addon installer for WampServer 2.2a
 
 REM set up the temp directory
 IF NOT EXIST %TMP% GOTO MKTMP
-REM FIXME: the rd command is commented out until downloading works
 echo 	Temp directory found from previous install: DELETING
-REM rd /S /Q %TMP%
+rd /S /Q %TMP%
 
 :MKTMP
 echo 	Setting up the temp directory...
 mkdir %TMP%
 
 REM download subversion archive to temp directory
-REM FIXME: download link keeps getting redirected and will not resolve
-REM echo 	Downloading svn binaries to temp directory...
-REM %BIN%\wget.exe -nd -P %TMP% %DOWNLOAD%
+echo 	Downloading svn binaries to temp directory...
+%BIN%\wget.exe -nd -q -P %TMP% %DOWNLOAD%
 
 REM unzip the downloaded source files and install them
 echo 	Extracting the files from the downloaded archive...
@@ -73,8 +70,7 @@ mkdir c:\svn
 
 REM clean up temp files
 echo 	Cleaning up temp files...
-REM FIXME: the rd command is commented out until downloading works
-REM rd /S /Q %TMP%
+rd /S /Q %TMP%
 
 echo Subversion is installed successfully. Please restart WampServer.
 

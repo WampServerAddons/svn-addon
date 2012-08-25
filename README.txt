@@ -1,15 +1,13 @@
-Subversion Add-on for WampServer Version 2.0i
+Subversion Add-on for WampServer Version 2.2a
 
-Apache version: 2.2.11
+Apache version: 2.2.21
 
 About:
- This is an addon for WampServer 2.0i that enables access to SVN repositories stored in c:\svn
+ This is an addon for WampServer 2.2a that enables access to SVN repositories stored in c:\svn
 
-Download locations for Subversion Zip file:
- * http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=8637&expandFolder=8637&folderID=469
-
- * 1.5.6 - http://subversion.tigris.org/files/documents/15/45230/svn-win32-1.5.6.zip
- * 1.6.6 - http://subversion.tigris.org/files/documents/15/46880/svn-win32-1.6.6.zip
+Where to download Subversion:
+ The binaries we currently use for the installer are from the Subversion for Windows project on
+ sourceforge.net - http://sourceforge.net/projects/win32svn/
 
 Manual install instructions:
  (assumes wamp is already installed and working)
@@ -22,7 +20,7 @@ Manual install instructions:
  5. add c:\wamp\bin\svn\svn%VERSION%\bin to your %PATH%
     (a logoff or reboot maybe required)
  6. copy mod_authz_svn.so and mod_dav_svn.so from c:\wamp\bin\svn\svn%VERSION%\bin
-    to c:\wamp\bin\apache\apache2.2.11\modules
+    to c:\wamp\bin\apache\apache2.2.21\modules
  7. copy one of the template svn.conf files to c:\wamp\alias and edit as needed
  8. create the folder c:\svn if it doesn't already exist
  9. copy or create any svn repositories to that directory if needed
@@ -30,16 +28,12 @@ Manual install instructions:
 
  * NOTE: you could use one of the subversion installers. Zip files are used
    so files can be kept consistant with Wamp naming conventions and install
-   locations
+   locations. The Subversion for windows project currently does not offer zip
+   files for versions of Subversion prior to 1.6.11. If you wish to use an
+   earlier version you will have to use the MSI installer instead.
 
 Using the Installer:
  usage: installer.bat
-
- Currently the installer is a work in progress. For installer to work first do the following
- 1. create a folder called "temp" in the "installer" directory
- 2. manually download the binary files for svn
- 3. run the installer
- 4. restart wampserver (may even need to log out or reboot first)
 
 
 TODO:
