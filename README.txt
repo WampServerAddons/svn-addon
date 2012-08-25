@@ -39,15 +39,3 @@ Manual install instructions:
 
 Using the Installer:
  usage: installer.bat
-
-
-TODO:
- * section on troubleshooting
- * integration with wampserver manager menu on systray
- * SSL encryption
- * virtual hosting (svn.*)
- * improved logging (http://svnbook.red-bean.com/en/1.5/svn.serverconfig.httpd.html)
- * user authentication
-
-FIXME:
- * spelling/capitalization check on all files
