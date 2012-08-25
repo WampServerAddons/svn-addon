@@ -1,6 +1,6 @@
 @echo OFF
 REM TODO use the call command to set some variables common to both the installer/uninstaller
-set SVN_VERSION=1.7.0
+set SVN_VERSION=1.7.1
 set APACHE_VERSION=2.2.21
 set WAMP_VERSION=2.2a
 
@@ -70,6 +70,49 @@ setenv -a PATH %SVN_BIN%
 REM create a place to store repositories
 echo 	Making directory to store Subversion repositories...
 mkdir c:\svn
+
+REM ----------------------- install the language bindings
+REM set variables needed to install the Python language bindings
+set PYTHON_VERSION=2.7.2
+set PYTHON_SERIES=27
+
+set WAMP_PYTHON=%WAMP%\bin\python
+
+set PYBINDINGS_FILE=svn-win32-%SVN_VERSION%_py%PYTHON_SERIES%
+set PYTHON_DIR=python%PYTHON_VERSION%
+set PYTHON_BIN=%WAMP_PYTHON%\%PYTHON_DIR%
+set PYTHON_LIB=%PYTHON_BIN%\Lib\site-packages
+
+set PYBINDINGS_DOWNLOAD=http://downloads.sourceforge.net/project/win32svn/%SVN_VERSION%/%PYBINDINGS_FILE%.zip
+
+REM Python Bindings
+:PYTHON
+IF NOT EXIST %PYTHON_BIN% GOTO PYTHON_END
+echo installing the Python language bindings...
+
+REM download Subversion archive to temp directory
+echo 	Downloading Python Bindings to temp directory...
+wget.exe -nd -q -P %TMP% %PYBINDINGS_DOWNLOAD%
+
+REM unzip the downloaded source files and install them
+echo 	Extracting the files from the downloaded archive...
+unzip.exe -q %TMP%\%PYBINDINGS_FILE%.zip -d %TMP%
+
+REM install the binary files in the WampServer install directory
+echo 	Moving the files to the WampServer install directory...
+REM mkdir %PYTHON_LIB%\libsvn
+REM mkdir %PYTHON_LIB%\svn
+REM copy %TMP%\%SVN_FILE%\python\libsvn\* %PYTHON_LIB%\libsvn
+REM copy %TMP%\%SVN_FILE%\python\svn\* %PYTHON_LIB%\svn
+copy %TMP%\%SVN_FILE%\python\libsvn %PYTHON_LIB%
+copy %TMP%\%SVN_FILE%\python\svn %PYTHON_LIB%
+
+REM TODO: precompile bindings
+
+echo	Python Bindings installed successfully.
+:PYTHON_END
+
+REM ----------------------- end install the language bindings
 
 REM clean up temp files
 echo 	Cleaning up temp files...
