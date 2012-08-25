@@ -4,10 +4,12 @@ set SVN_VERSION=1.7.0
 set APACHE_VERSION=2.2.21
 set WAMP_VERSION=2.2a
 
+set ADDON=Subversion
+
 set BIN=installer\bin
 set TMP=installer\temp
 
-set WAMP="c:\wamp"
+set WAMP=c:\wamp
 set WAMP_SVN=%WAMP%\bin\svn
 set WAMP_APACHE_MODULES=%WAMP%\bin\apache\apache%APACHE_VERSION%\modules
 
@@ -23,7 +25,7 @@ REM set SVN_ALIAS=svn-anonymous-rw-access.conf
 
 set PATH=%PATH%;%BIN%
 
-echo Welcome to the Subversion Addon installer for WampServer %WAMP_VERSION%
+echo Welcome to the %ADDON% Addon installer for WampServer %WAMP_VERSION%
 
 REM set up the temp directory
 IF NOT EXIST %TMP% GOTO MKTMP
@@ -35,7 +37,7 @@ echo 	Setting up the temp directory...
 mkdir %TMP%
 
 REM download Subversion archive to temp directory
-echo 	Downloading Subversion binaries to temp directory...
+echo 	Downloading %ADDON% binaries to temp directory...
 wget.exe -nd -q -P %TMP% %SVN_DOWNLOAD%
 
 REM unzip the downloaded source files and install them
@@ -49,19 +51,19 @@ mkdir %WAMP_SVN%
 move %TMP%\%SVN_DIR% %WAMP_SVN%
 
 REM install the Subversion modules for Apache
-echo 	Installing the Subversion modules for Apache...
+echo 	Installing the %ADDON% modules for Apache...
 copy %SVN_BIN%\mod_authz_svn.so %WAMP_APACHE_MODULES%
 copy %SVN_BIN%\mod_dav_svn.so %WAMP_APACHE_MODULES%
 
-REM install the apache config file for SVN
+REM install the apache config file for Subversion
 REM FIXME: may be able to skip moving to%TMP% and just copy to %WAMP_ALIAS%
 REM FIXME: and rename during that copy command
-echo 	Installing Subversion configuration files...
+echo 	Installing %ADDON% configuration files...
 copy wamp\alias\%SVN_ALIAS% %TMP%
 ren %TMP%\%SVN_ALIAS% svn.conf
 move %TMP%\svn.conf %WAMP%\alias
 
-REM add the SVN bin directory to the PATH so apache can find them
+REM add the Subversion bin directory to the PATH so apache can find them
 echo 	Setting enviorment variables...
 setenv -a PATH %SVN_BIN%
 
@@ -73,6 +75,6 @@ REM clean up temp files
 echo 	Cleaning up temp files...
 rd /S /Q %TMP%
 
-echo Subversion is installed successfully. Please restart WampServer.
+echo %ADDON% is installed successfully. Please restart WampServer.
 
 pause

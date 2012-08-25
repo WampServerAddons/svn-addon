@@ -3,7 +3,7 @@ Subversion Add-on for WampServer Version 2.2a
 Apache version: 2.2.21
 
 About:
- This is an addon for WampServer 2.2a that enables access to SVN repositories stored in c:\svn
+ This is an addon for WampServer 2.2a that enables access to Subversion repositories stored in c:\svn
 
 Where to download Subversion:
  The binaries we currently use for the installer are from the Subversion for Windows project on
@@ -12,7 +12,7 @@ Where to download Subversion:
 Manual install instructions:
  (assumes wamp is already installed and working)
 
- 1. download one of the zip files listed above
+ 1. download the zip file listed above
  2. extract the files to a temporary directory
  3. inside of the folder that was extracted you should see a directory named
     svn-win32-%VERSION%
