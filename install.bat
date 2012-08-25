@@ -49,18 +49,18 @@ if not %ERRORLEVEL%==0 (echo FAIL: could not extract downloaded files& pause& ex
 REM install the binary files in the WampServer install directory
 echo 	Moving the files to the WampServer install directory...
 mkdir %WAMP_SVN%
-move %TMP%\%SVN_FILE% %WAMP_SVN%\%SVN_DIR%
+move %TMP%\%SVN_FILE% %WAMP_SVN%\%SVN_DIR% > NUL 2>&1
 if not %ERRORLEVEL%==0 (echo FAIL: could not move the files& pause& exit 1)
 
 REM install the Subversion modules for Apache
 echo 	Installing the %ADDON% modules for Apache...
-copy %SVN_BIN%\mod_authz_svn.so %WAMP_APACHE_MODULES%
-copy %SVN_BIN%\mod_dav_svn.so %WAMP_APACHE_MODULES%
+copy %SVN_BIN%\mod_authz_svn.so %WAMP_APACHE_MODULES% > NUL 2>&1
+copy %SVN_BIN%\mod_dav_svn.so %WAMP_APACHE_MODULES% > NUL 2>&1
 if not %ERRORLEVEL%==0 (echo FAIL: could not install Apache modules& pause& exit 1)
 
 REM install the apache config file for Subversion
 echo 	Installing %ADDON% configuration files...
-copy wamp\alias\%SVN_ALIAS% %WAMP%\alias\svn.conf
+copy wamp\alias\%SVN_ALIAS% %WAMP%\alias\svn.conf > NUL 2>&1
 if not %ERRORLEVEL%==0 (echo FAIL: could not install WampServer alias file& pause& exit 1)
 
 REM add the Subversion bin directory to the PATH so apache can find them
@@ -102,8 +102,9 @@ if not %ERRORLEVEL%==0 (echo WARNING: could not extract Python bindings. Skippin
 
 REM install the binary files in the WampServer install directory
 echo 	Moving the files to the WampServer install directory...
-copy %TMP%\%SVN_FILE%\python\libsvn %PYTHON_LIB%
-copy %TMP%\%SVN_FILE%\python\svn %PYTHON_LIB%
+move %TMP%\%SVN_FILE%\python\libsvn %PYTHON_LIB% > NUL 2>&1
+if not %ERRORLEVEL%==0 (echo WARNING: could not install Python bindings. Skipping...& GOTO PYTHON_END)
+move %TMP%\%SVN_FILE%\python\svn %PYTHON_LIB%> NUL 2>&1
 if not %ERRORLEVEL%==0 (echo WARNING: could not install Python bindings. Skipping...& GOTO PYTHON_END)
 
 REM TODO: precompile bindings
